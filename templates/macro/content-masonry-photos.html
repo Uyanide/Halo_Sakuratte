@@ -34,14 +34,16 @@
             th:classappend="|group-${#strings.trim(photo.spec.groupName)} col-${theme.config.photos.masonry_column}|"
           >
             <header class="gallery-icon">
-              <img
-                class="lazyload"
-                th:src="${#strings.isEmpty(photo.spec.cover) ? #theme.assets('/images/load/load.gif') : photo.spec.cover}"
-                th:alt="${photo.spec.displayName}"
-                th:data-src="${photo.spec.url}"
-                height="500"
-                width="500"
-              />
+              <a data-fancybox="gallery" th:href="${photo.spec.url}">
+                <img
+                  class="lazyload"
+                  th:src="${#theme.assets('/images/load/spinner.svg')}"
+                  th:alt="${photo.spec.displayName}"
+                  th:data-src="${#strings.isEmpty(photo.spec.cover) ? photo.spec.url : photo.spec.cover}"
+                  height="500"
+                  width="500"
+                />
+              </a>
             </header>
             <figcaption class="gallery-caption">
               <div class="entry-summary">
