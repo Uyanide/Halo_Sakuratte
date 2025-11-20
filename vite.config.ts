@@ -2,38 +2,36 @@ import { globSync } from "glob";
 import { defineConfig } from "vite";
 import { fileURLToPath } from "url";
 import path from "path";
-import PurgeIcons from 'vite-plugin-purge-icons';
-import fs from 'fs';
+import PurgeIcons from "vite-plugin-purge-icons";
+import fs from "fs";
 import { loadEnv } from "vite";
 
-const THEME_BASE = "/themes/theme-sakura";
+const THEME_BASE = "/themes/theme-sakuratte";
 const ASSETS_BASE = `/assets/dist/`;
 
 export default ({ mode }: { mode: string }) => {
-  const env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd());
 
   return defineConfig({
     plugins: [
       PurgeIcons({
-        content: [
-          './templates/*/*.html',
-        ],
+        content: ["./templates/*/*.html"],
       }),
       {
-        name: 'write-version-plugin',
+        name: "write-version-plugin",
         closeBundle() {
           const version = env.VITE_THEME_VERSION;
-          const yamlFilePath = path.resolve(__dirname, 'theme.yaml');
-          let yamlContent = fs.readFileSync(yamlFilePath, 'utf8');
+          const yamlFilePath = path.resolve(__dirname, "theme.yaml");
+          let yamlContent = fs.readFileSync(yamlFilePath, "utf8");
           yamlContent = yamlContent.replace(/version:\s*.*$/m, `version: ${version}`);
-          fs.writeFileSync(yamlFilePath, yamlContent, 'utf8');
+          fs.writeFileSync(yamlFilePath, yamlContent, "utf8");
         },
-      }
+      },
     ],
     base: THEME_BASE + ASSETS_BASE,
     build: {
       outDir: "templates" + ASSETS_BASE,
-      minify: mode === 'development' ? false : true,
+      minify: mode === "development" ? false : true,
       rollupOptions: {
         input: Object.fromEntries(
           globSync(["src/main.ts", "src/libs/**/*.*", "src/page/**/*.*"]).map((file) => [
@@ -53,7 +51,7 @@ export default ({ mode }: { mode: string }) => {
         },
       },
       sourcemap: false,
-      chunkSizeWarningLimit: 1024
+      chunkSizeWarningLimit: 1024,
     },
   });
 };
