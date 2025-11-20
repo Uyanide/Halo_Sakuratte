@@ -10,7 +10,7 @@ spec:
         - $formkit: color
           name: theme_skin
           label: 主题基色
-          value: "#FE9600"
+          value: "#89B4FA"
         - $formkit: select
           name: cursor_skin
           label: 鼠标风格
