@@ -4,7 +4,7 @@
   th:replace="~{layout :: layout(_title = ~{::title}, _header = ~{::header}, _content = ~{::content})}"
 >
   <th:block th:fragment="title">
-    <th:block data-i18="notfound.title" th:i18n-options="|{title: '${site.title}'}|"></th:block>
+    <th:block data-i18n="notfound.title" th:i18n-options="|{title: '${site.title}'}|"></th:block>
   </th:block>
 
   <th:block th:fragment="content">
@@ -33,7 +33,7 @@
         <th:block th:if="${pluginFinder.available('PluginSearchWidget', '>=1.5.0')}">
           <div class="error-search">
             <p data-i18n="notfound.search"></p>
-            <p data-i18="notfound.search_2">Don't worry, search in site?</p>
+            <p data-i18n="notfound.search_2"></p>
             <div class="search-box" style="display: block; width: 284px; margin: auto">
               <form method="get" action="/search" role="search">
                 <span class="iconify icon-search" data-icon="solar:magnifer-outline"> </span>
