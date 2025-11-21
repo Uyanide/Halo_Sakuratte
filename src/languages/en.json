@@ -101,7 +101,7 @@
     "title": "Page Not Found - {{ title }}",
     "golast": "return to previous page",
     "gohome": "return to home page",
-    "search": "Don't worry, search in site?",
+    "search": "🤔",
     "search_2": "Don't worry, search in site?",
     "searchinput": "Search..."
   },
