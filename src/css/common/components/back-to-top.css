@@ -2,18 +2,18 @@
   display: var(--cd-top-display);
   z-index: 9;
   position: fixed;
-  top: -900px;
+  bottom: -420px;
   right: 1.5rem;
   width: 4.5rem;
-  height: 900px;
+  height: 245px;
   background-size: contain;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.8s ease-in;
   opacity: 1;
   background: var(--cd-top-image);
   cursor: var(--cursor-hover);
 
   &.cd-is-visible {
-    top: -326px;
+    bottom: -100px;
   }
 
   &:hover,

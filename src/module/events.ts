@@ -75,6 +75,27 @@ export class Events {
   public registerScrollEvent() {
     const offset = (document.querySelector(".site-header") as HTMLElement)?.offsetHeight || 75;
     const backToTopElement = document.querySelector(".cd-top") as HTMLElement | null;
+
+    const hiddenBottom = "-420px";
+    const displayBottom = "-100px";
+    const transitionendBottom = "100vh";
+
+    if (backToTopElement) {
+      backToTopElement.style.bottom = hiddenBottom;
+      backToTopElement.addEventListener("transitionend", (event: TransitionEvent) => {
+        if (event.target !== backToTopElement || event.propertyName !== "bottom") {
+          return;
+        }
+
+        if (backToTopElement.style.bottom === transitionendBottom) {
+          backToTopElement.style.transition = "none";
+          backToTopElement.style.bottom = hiddenBottom;
+          backToTopElement.offsetHeight;
+          backToTopElement.style.transition = "";
+        }
+      });
+    }
+
     const mobileBackToTopElement = document.querySelector(".m-cd-top") as HTMLElement | null;
     const changeSkinElement = document.querySelector(".change-skin-gear") as HTMLElement | null;
     const mobileChangeSkinElement = document.querySelector(".mobile-change-skin") as HTMLElement | null;
@@ -91,13 +112,13 @@ export class Events {
 
     const updateBackToTopPosition = () => {
       if (backToTopElement) {
-        const backToTopOffset = backToTopElement.offsetHeight || 0;
+        // const backToTopOffset = backToTopElement.offsetHeight || 0;
         if (document.documentElement.scrollTop > offset) {
-          backToTopElement.style.top = backToTopOffset > window.innerHeight
-            ? `${window.innerHeight - backToTopOffset - offset}px`
-            : "0";
+          backToTopElement.style.bottom = displayBottom;
         } else {
-          backToTopElement.style.top = "-900px";
+          if (backToTopElement.style.bottom !== hiddenBottom && backToTopElement.style.bottom !== "") {
+            backToTopElement.style.bottom = transitionendBottom;
+          }
         }
       }
     };
@@ -481,7 +502,6 @@ export class Events {
       localStorage.setItem("systemMode", "false");
       bodyElement.classList.add("dark");
     }
-
   }
 }
 

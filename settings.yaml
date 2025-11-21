@@ -1091,7 +1091,7 @@ spec:
         - $formkit: text
           name: top_back_img
           label: 回到顶部图片
-          value: /themes/theme-sakuratte/assets/images/scroll.png
+          value: /themes/theme-sakuratte/assets/images/to_top.webp
         - $formkit: text
           name: footer_logo
           label: 页脚 Logo
